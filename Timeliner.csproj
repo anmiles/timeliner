@@ -250,7 +250,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(ProjectDir)*.config" "$(TargetDir)" /q /y
-xcopy "$(ProjectDir)*.config" "D:\bin" /q /y
 xcopy "$(TargetPath)" "D:\bin" /q /y</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
