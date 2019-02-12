@@ -7,20 +7,20 @@ using System.Xml.Serialization;
 
 namespace Timeliner.Configuration
 {
-	[Serializable]
-	public class AppearanceElement
-	{
-		[XmlElement("BarWidth")]
-		public int BarWidth { get; set; }
+    [Serializable]
+    public class AppearanceElement
+    {
+        [XmlElement("BarWidth")]
+        public int BarWidth { get; set; }
 
-		[XmlElement("ScreenIndex")]
-		public int ScreenIndex { get; set; }
+        [XmlElement("ScreenIndex")]
+        public int ScreenIndex { get; set; }
 
-		[XmlElement("Position")]
-		public string Position { get; set; }
+        [XmlElement("Position")]
+        public string Position { get; set; }
 
-		[XmlElement("IgnoreTaskbar")]
-		public bool IgnoreTaskbar { get; set; }
+        [XmlElement("IgnoreTaskbar")]
+        public bool IgnoreTaskbar { get; set; }
 
-	}
+    }
 }

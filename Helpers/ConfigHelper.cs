@@ -10,49 +10,49 @@ using Timeliner.Configuration;
 
 namespace Timeliner.Helpers
 {
-	public static class ConfigHelper
-	{
-		private const string CONST_configFileName = "Timeliner.config";
+    public static class ConfigHelper
+    {
+        private const string CONST_configFileName = "Timeliner.config";
 
-		public static TimelinerConfig ReadConfig()
-		{
-			using (FileStream fileStream = new FileStream(GetConfigFilePath(), FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
-			{
-				XmlSerializer xmlSerializer = new XmlSerializer(typeof(TimelinerConfig));
-				TimelinerConfig config = (TimelinerConfig)xmlSerializer.Deserialize(fileStream);
-				fileStream.SetLength(0);
-				xmlSerializer.Serialize(fileStream, config);
-				return config;
-			}
-		}
+        public static TimelinerConfig ReadConfig()
+        {
+            using (FileStream fileStream = new FileStream(GetConfigFilePath(), FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(TimelinerConfig));
+                TimelinerConfig config = (TimelinerConfig)xmlSerializer.Deserialize(fileStream);
+                fileStream.SetLength(0);
+                xmlSerializer.Serialize(fileStream, config);
+                return config;
+            }
+        }
 
-		public static bool WriteConfig(TimelinerConfig config)
-		{
-			bool changedValue = true;
+        public static bool WriteConfig(TimelinerConfig config)
+        {
+            bool changedValue = true;
 
-			lock (CONST_configFileName)
-			{
-				using (FileStream fileStream = new FileStream(GetConfigFilePath(), FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
-				{
-					XmlSerializer xmlSerializer = new XmlSerializer(typeof(TimelinerConfig));
+            lock (CONST_configFileName)
+            {
+                using (FileStream fileStream = new FileStream(GetConfigFilePath(), FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(TimelinerConfig));
 
-					try
-					{
-						xmlSerializer.Serialize(fileStream, config);
-					}
-					catch (Exception)
-					{
-						changedValue = false;
-					}
-				}
-			}
+                    try
+                    {
+                        xmlSerializer.Serialize(fileStream, config);
+                    }
+                    catch (Exception)
+                    {
+                        changedValue = false;
+                    }
+                }
+            }
 
-			return changedValue;
-		}
+            return changedValue;
+        }
 
-		private static string GetConfigFilePath()
-		{
-			return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), CONST_configFileName);
-		}
-	}
+        private static string GetConfigFilePath()
+        {
+            return Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), CONST_configFileName);
+        }
+    }
 }

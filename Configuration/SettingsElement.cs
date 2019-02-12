@@ -7,14 +7,14 @@ using System.Xml.Serialization;
 
 namespace Timeliner.Configuration
 {
-	[Serializable]
-	public class SettingsElement
-	{
-		[XmlElement("ResetAfterMidnight")]
-		public bool ResetAfterMidnight { get; set; }
+    [Serializable]
+    public class SettingsElement
+    {
+        [XmlElement("ResetAfterMidnight")]
+        public bool ResetAfterMidnight { get; set; }
 
-		[XmlElement("ShowAfterMidnight")]
-		public bool ShowAfterMidnight { get; set; }
+        [XmlElement("ShowAfterMidnight")]
+        public bool ShowAfterMidnight { get; set; }
 
-	}
+    }
 }

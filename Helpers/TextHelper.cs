@@ -6,11 +6,11 @@ using System.Text;
 
 namespace Timeliner.Helpers
 {
-	public static class TextHelper
-	{
-		public static Encoding Windows1251()
-		{
-			return Encoding.GetEncoding("Windows-1251");
-		}
-	}
+    public static class TextHelper
+    {
+        public static Encoding Windows1251()
+        {
+            return Encoding.GetEncoding("Windows-1251");
+        }
+    }
 }

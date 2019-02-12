@@ -6,13 +6,13 @@ using System.Windows.Forms;
 
 namespace Timeliner
 {
-	public partial class UpdateForm : Form
-	{
-		public UpdateForm(string text)
-		{
-			this.InitializeComponent();
-			this.label1.Text = text;
-			this.pictureBox1.Image = Resources.Preloader;
-		}
-	}
+    public partial class UpdateForm : Form
+    {
+        public UpdateForm(string text)
+        {
+            this.InitializeComponent();
+            this.label1.Text = text;
+            this.pictureBox1.Image = Resources.Preloader;
+        }
+    }
 }

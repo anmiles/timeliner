@@ -7,17 +7,17 @@ using System.Xml.Serialization;
 
 namespace Timeliner.Configuration
 {
-	[Serializable]
-	public class StartElement
-	{
-		[XmlAttribute("Hour")]
-		public int Hour { get; set; }
+    [Serializable]
+    public class StartElement
+    {
+        [XmlAttribute("Hour")]
+        public int Hour { get; set; }
 
-		[XmlAttribute("Minute")]
-		public int Minute { get; set; }
+        [XmlAttribute("Minute")]
+        public int Minute { get; set; }
 
-		[XmlAttribute("Second")]
-		public int Second { get; set; }
+        [XmlAttribute("Second")]
+        public int Second { get; set; }
 
-	}
+    }
 }

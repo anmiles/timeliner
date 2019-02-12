@@ -7,17 +7,17 @@ using System.Xml.Serialization;
 
 namespace Timeliner.Configuration
 {
-	[Serializable]
-	public class PhaseElement
-	{
-		[XmlAttribute("Begin")]
-		public int Begin { get; set; }
+    [Serializable]
+    public class PhaseElement
+    {
+        [XmlAttribute("Begin")]
+        public int Begin { get; set; }
 
-		[XmlAttribute("Color")]
-		public int Color { get; set; }
+        [XmlAttribute("Color")]
+        public int Color { get; set; }
 
-		[XmlElement("Message")]
-		public MessageElement Message { get; set; }
+        [XmlElement("Message")]
+        public MessageElement Message { get; set; }
 
-	}
+    }
 }

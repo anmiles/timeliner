@@ -8,24 +8,24 @@ using System.Collections.Generic;
 
 namespace Timeliner.Configuration
 {
-	[Serializable]
-	public class TimelinerConfig
-	{
-		[XmlElement("Initialized")]
-		public bool Initialized { get; set; }
+    [Serializable]
+    public class TimelinerConfig
+    {
+        [XmlElement("Initialized")]
+        public bool Initialized { get; set; }
 
-		[XmlElement("Timeline")]
-		public TimelineElement Timeline { get; set; }
+        [XmlElement("Timeline")]
+        public TimelineElement Timeline { get; set; }
 
-		[XmlElement("Settings")]
-		public SettingsElement Settings { get; set; }
+        [XmlElement("Settings")]
+        public SettingsElement Settings { get; set; }
 
-		[XmlElement("Appearance")]
-		public AppearanceElement Appearance { get; set; }
+        [XmlElement("Appearance")]
+        public AppearanceElement Appearance { get; set; }
 
-		[XmlArray("Phases")]
-		[XmlArrayItem("Phase", typeof(PhaseElement))]
-		public List<PhaseElement> Phases { get; set; }
+        [XmlArray("Phases")]
+        [XmlArrayItem("Phase", typeof(PhaseElement))]
+        public List<PhaseElement> Phases { get; set; }
 
-	}
+    }
 }
