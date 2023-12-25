@@ -31,17 +31,16 @@ namespace Timeliner
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtTimelineStart = new System.Windows.Forms.MaskedTextBox();
             this.checkResetAfterMidnight = new System.Windows.Forms.CheckBox();
             this.groupTimeline = new System.Windows.Forms.GroupBox();
             this.tableTimeline = new System.Windows.Forms.TableLayoutPanel();
-            this.numericTimelinePeriods = new System.Windows.Forms.NumericUpDown();
+            this.txtTimelineStart = new System.Windows.Forms.MaskedTextBox();
             this.numericTimelinePause = new System.Windows.Forms.NumericUpDown();
-            this.numericTimelinePlay = new System.Windows.Forms.NumericUpDown();
+            this.numericTimelinePeriod = new System.Windows.Forms.NumericUpDown();
             this.labelTimelineStart = new System.Windows.Forms.Label();
-            this.labelTimelinePlay = new System.Windows.Forms.Label();
+            this.labelTimelinePeriod = new System.Windows.Forms.Label();
             this.labelTimelinePause = new System.Windows.Forms.Label();
-            this.labelTimelinePeriods = new System.Windows.Forms.Label();
+            this.groupPeriods = new System.Windows.Forms.GroupBox();
             this.groupPhases = new System.Windows.Forms.GroupBox();
             this.groupSettings = new System.Windows.Forms.GroupBox();
             this.tableSettings = new System.Windows.Forms.TableLayoutPanel();
@@ -65,9 +64,8 @@ namespace Timeliner
             this.groupAppearance = new System.Windows.Forms.GroupBox();
             this.groupTimeline.SuspendLayout();
             this.tableTimeline.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericTimelinePeriods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericTimelinePause)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericTimelinePlay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTimelinePeriod)).BeginInit();
             this.groupSettings.SuspendLayout();
             this.tableSettings.SuspendLayout();
             this.tableButtons.SuspendLayout();
@@ -115,14 +113,12 @@ namespace Timeliner
             this.tableTimeline.ColumnCount = 2;
             this.tableTimeline.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableTimeline.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableTimeline.Controls.Add(this.numericTimelinePeriods, 1, 3);
-            this.tableTimeline.Controls.Add(this.numericTimelinePause, 1, 2);
-            this.tableTimeline.Controls.Add(this.numericTimelinePlay, 1, 1);
             this.tableTimeline.Controls.Add(this.labelTimelineStart, 0, 0);
-            this.tableTimeline.Controls.Add(this.labelTimelinePlay, 0, 1);
+            this.tableTimeline.Controls.Add(this.labelTimelinePeriod, 0, 1);
             this.tableTimeline.Controls.Add(this.labelTimelinePause, 0, 2);
-            this.tableTimeline.Controls.Add(this.labelTimelinePeriods, 0, 3);
             this.tableTimeline.Controls.Add(this.txtTimelineStart, 1, 0);
+            this.tableTimeline.Controls.Add(this.numericTimelinePeriod, 1, 1);
+            this.tableTimeline.Controls.Add(this.numericTimelinePause, 1, 2);
             this.tableTimeline.Location = new System.Drawing.Point(0, 18);
             this.tableTimeline.Name = "tableTimeline";
             this.tableTimeline.RowCount = 4;
@@ -132,18 +128,6 @@ namespace Timeliner
             this.tableTimeline.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableTimeline.Size = new System.Drawing.Size(182, 107);
             this.tableTimeline.TabIndex = 2;
-            // 
-            // numericTimelinePeriods
-            // 
-            this.numericTimelinePeriods.Location = new System.Drawing.Point(94, 81);
-            this.numericTimelinePeriods.Maximum = new decimal(new int[] {
-            1440,
-            0,
-            0,
-            0});
-            this.numericTimelinePeriods.Name = "numericTimelinePeriods";
-            this.numericTimelinePeriods.Size = new System.Drawing.Size(51, 20);
-            this.numericTimelinePeriods.TabIndex = 8;
             // 
             // numericTimelinePause
             // 
@@ -157,17 +141,17 @@ namespace Timeliner
             this.numericTimelinePause.Size = new System.Drawing.Size(51, 20);
             this.numericTimelinePause.TabIndex = 7;
             // 
-            // numericTimelinePlay
+            // numericTimelinePeriod
             // 
-            this.numericTimelinePlay.Location = new System.Drawing.Point(94, 29);
-            this.numericTimelinePlay.Maximum = new decimal(new int[] {
+            this.numericTimelinePeriod.Location = new System.Drawing.Point(94, 29);
+            this.numericTimelinePeriod.Maximum = new decimal(new int[] {
             1440,
             0,
             0,
             0});
-            this.numericTimelinePlay.Name = "numericTimelinePlay";
-            this.numericTimelinePlay.Size = new System.Drawing.Size(51, 20);
-            this.numericTimelinePlay.TabIndex = 6;
+            this.numericTimelinePeriod.Name = "numericTimelinePeriod";
+            this.numericTimelinePeriod.Size = new System.Drawing.Size(51, 20);
+            this.numericTimelinePeriod.TabIndex = 6;
             // 
             // labelTimelineStart
             // 
@@ -180,16 +164,16 @@ namespace Timeliner
             this.labelTimelineStart.Text = "Start time";
             this.labelTimelineStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // labelTimelinePlay
+            // labelTimelinePeriod
             // 
-            this.labelTimelinePlay.AutoSize = true;
-            this.labelTimelinePlay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTimelinePlay.Location = new System.Drawing.Point(3, 26);
-            this.labelTimelinePlay.Name = "labelTimelinePlay";
-            this.labelTimelinePlay.Size = new System.Drawing.Size(85, 26);
-            this.labelTimelinePlay.TabIndex = 3;
-            this.labelTimelinePlay.Text = "Play minutes";
-            this.labelTimelinePlay.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelTimelinePeriod.AutoSize = true;
+            this.labelTimelinePeriod.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelTimelinePeriod.Location = new System.Drawing.Point(3, 26);
+            this.labelTimelinePeriod.Name = "labelTimelinePeriod";
+            this.labelTimelinePeriod.Size = new System.Drawing.Size(85, 26);
+            this.labelTimelinePeriod.TabIndex = 3;
+            this.labelTimelinePeriod.Text = "Period (min.)";
+            this.labelTimelinePeriod.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // labelTimelinePause
             // 
@@ -199,23 +183,21 @@ namespace Timeliner
             this.labelTimelinePause.Name = "labelTimelinePause";
             this.labelTimelinePause.Size = new System.Drawing.Size(85, 26);
             this.labelTimelinePause.TabIndex = 5;
-            this.labelTimelinePause.Text = "Pause minutes";
+            this.labelTimelinePause.Text = "Pause (min.)";
             this.labelTimelinePause.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // labelTimelinePeriods
+            // groupPeriods
             // 
-            this.labelTimelinePeriods.AutoSize = true;
-            this.labelTimelinePeriods.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelTimelinePeriods.Location = new System.Drawing.Point(3, 78);
-            this.labelTimelinePeriods.Name = "labelTimelinePeriods";
-            this.labelTimelinePeriods.Size = new System.Drawing.Size(85, 29);
-            this.labelTimelinePeriods.TabIndex = 4;
-            this.labelTimelinePeriods.Text = "Periods";
-            this.labelTimelinePeriods.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.groupPeriods.Location = new System.Drawing.Point(208, 12);
+            this.groupPeriods.Name = "groupPeriods";
+            this.groupPeriods.Size = new System.Drawing.Size(18, 176);
+            this.groupPeriods.TabIndex = 9;
+            this.groupPeriods.TabStop = false;
+            this.groupPeriods.Text = "Periods";
             // 
             // groupPhases
             // 
-            this.groupPhases.Location = new System.Drawing.Point(208, 12);
+            this.groupPhases.Location = new System.Drawing.Point(208, 196);
             this.groupPhases.Name = "groupPhases";
             this.groupPhases.Size = new System.Drawing.Size(18, 24);
             this.groupPhases.TabIndex = 9;
@@ -277,7 +259,7 @@ namespace Timeliner
             this.tableButtons.Controls.Add(this.buttonApplyTemplorarily, 0, 0);
             this.tableButtons.Controls.Add(this.buttonResetConfig, 0, 2);
             this.tableButtons.Controls.Add(this.buttonSavePermanently, 0, 1);
-            this.tableButtons.Location = new System.Drawing.Point(13, 451);
+            this.tableButtons.Location = new System.Drawing.Point(13, 457);
             this.tableButtons.Name = "tableButtons";
             this.tableButtons.RowCount = 3;
             this.tableButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
@@ -314,7 +296,7 @@ namespace Timeliner
             this.panelAppearancePosition.Controls.Add(this.radioPositionTop);
             this.panelAppearancePosition.Location = new System.Drawing.Point(1, 96);
             this.panelAppearancePosition.Name = "panelAppearancePosition";
-            this.panelAppearancePosition.Size = new System.Drawing.Size(182, 98);
+            this.panelAppearancePosition.Size = new System.Drawing.Size(182, 104);
             this.panelAppearancePosition.TabIndex = 1;
             // 
             // labelAppearancePosition
@@ -322,16 +304,16 @@ namespace Timeliner
             this.labelAppearancePosition.AutoSize = true;
             this.labelAppearancePosition.Location = new System.Drawing.Point(70, 40);
             this.labelAppearancePosition.Name = "labelAppearancePosition";
-            this.labelAppearancePosition.Size = new System.Drawing.Size(44, 13);
+            this.labelAppearancePosition.Size = new System.Drawing.Size(44, 16);
             this.labelAppearancePosition.TabIndex = 4;
             this.labelAppearancePosition.Text = "Position";
             // 
             // radioPositionRight
             // 
             this.radioPositionRight.AutoSize = true;
-            this.radioPositionRight.Location = new System.Drawing.Point(118, 40);
+            this.radioPositionRight.Location = new System.Drawing.Point(118, 44);
             this.radioPositionRight.Name = "radioPositionRight";
-            this.radioPositionRight.Size = new System.Drawing.Size(14, 13);
+            this.radioPositionRight.Size = new System.Drawing.Size(14, 14);
             this.radioPositionRight.TabIndex = 3;
             this.radioPositionRight.TabStop = true;
             this.radioPositionRight.Tag = "Right";
@@ -340,9 +322,9 @@ namespace Timeliner
             // radioPositionLeft
             // 
             this.radioPositionLeft.AutoSize = true;
-            this.radioPositionLeft.Location = new System.Drawing.Point(48, 40);
+            this.radioPositionLeft.Location = new System.Drawing.Point(48, 44);
             this.radioPositionLeft.Name = "radioPositionLeft";
-            this.radioPositionLeft.Size = new System.Drawing.Size(14, 13);
+            this.radioPositionLeft.Size = new System.Drawing.Size(14, 14);
             this.radioPositionLeft.TabIndex = 2;
             this.radioPositionLeft.TabStop = true;
             this.radioPositionLeft.Tag = "Left";
@@ -351,9 +333,9 @@ namespace Timeliner
             // radioPositionBottom
             // 
             this.radioPositionBottom.AutoSize = true;
-            this.radioPositionBottom.Location = new System.Drawing.Point(85, 75);
+            this.radioPositionBottom.Location = new System.Drawing.Point(85, 79);
             this.radioPositionBottom.Name = "radioPositionBottom";
-            this.radioPositionBottom.Size = new System.Drawing.Size(14, 13);
+            this.radioPositionBottom.Size = new System.Drawing.Size(14, 14);
             this.radioPositionBottom.TabIndex = 1;
             this.radioPositionBottom.TabStop = true;
             this.radioPositionBottom.Tag = "Bottom";
@@ -362,9 +344,9 @@ namespace Timeliner
             // radioPositionTop
             // 
             this.radioPositionTop.AutoSize = true;
-            this.radioPositionTop.Location = new System.Drawing.Point(85, 5);
+            this.radioPositionTop.Location = new System.Drawing.Point(85, 9);
             this.radioPositionTop.Name = "radioPositionTop";
-            this.radioPositionTop.Size = new System.Drawing.Size(14, 13);
+            this.radioPositionTop.Size = new System.Drawing.Size(14, 14);
             this.radioPositionTop.TabIndex = 0;
             this.radioPositionTop.TabStop = true;
             this.radioPositionTop.Tag = "Top";
@@ -448,7 +430,7 @@ namespace Timeliner
             this.groupAppearance.Controls.Add(this.panelAppearancePosition);
             this.groupAppearance.Location = new System.Drawing.Point(12, 217);
             this.groupAppearance.Name = "groupAppearance";
-            this.groupAppearance.Size = new System.Drawing.Size(184, 228);
+            this.groupAppearance.Size = new System.Drawing.Size(184, 234);
             this.groupAppearance.TabIndex = 6;
             this.groupAppearance.TabStop = false;
             this.groupAppearance.Text = "Appearance";
@@ -464,6 +446,7 @@ namespace Timeliner
             this.Controls.Add(this.groupAppearance);
             this.Controls.Add(this.groupSettings);
             this.Controls.Add(this.groupTimeline);
+            this.Controls.Add(this.groupPeriods);
             this.Controls.Add(this.groupPhases);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = global::Timeliner.Resources.Icon;
@@ -475,9 +458,8 @@ namespace Timeliner
             this.groupTimeline.ResumeLayout(false);
             this.tableTimeline.ResumeLayout(false);
             this.tableTimeline.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericTimelinePeriods)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericTimelinePause)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericTimelinePlay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericTimelinePeriod)).EndInit();
             this.groupSettings.ResumeLayout(false);
             this.tableSettings.ResumeLayout(false);
             this.tableSettings.PerformLayout();
@@ -499,17 +481,16 @@ namespace Timeliner
         private System.Windows.Forms.MaskedTextBox txtTimelineStart;
         private System.Windows.Forms.CheckBox checkResetAfterMidnight;
         private System.Windows.Forms.GroupBox groupTimeline;
+        private System.Windows.Forms.GroupBox groupPeriods;
         private System.Windows.Forms.GroupBox groupPhases;
         private System.Windows.Forms.TableLayoutPanel tableTimeline;
         private System.Windows.Forms.Label labelTimelineStart;
-        private System.Windows.Forms.Label labelTimelinePlay;
+        private System.Windows.Forms.Label labelTimelinePeriod;
         private System.Windows.Forms.Label labelTimelinePause;
-        private System.Windows.Forms.Label labelTimelinePeriods;
         private System.Windows.Forms.GroupBox groupSettings;
         private System.Windows.Forms.TableLayoutPanel tableSettings;
         private System.Windows.Forms.CheckBox checkShowAfterMidnight;
-        private System.Windows.Forms.NumericUpDown numericTimelinePlay;
-        private System.Windows.Forms.NumericUpDown numericTimelinePeriods;
+        private System.Windows.Forms.NumericUpDown numericTimelinePeriod;
         private System.Windows.Forms.NumericUpDown numericTimelinePause;
         private Button buttonResetConfig;
         private TableLayoutPanel tableButtons;

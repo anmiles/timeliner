@@ -3,6 +3,7 @@
 using System;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Timeliner.Configuration;
 using Timeliner.Helpers;
@@ -33,35 +34,46 @@ namespace Timeliner.Types
             float beginTime = config.Timeline.Start.GetStep();
             float time = new StartElement().SetDate(dateTime).GetStep();
 
-            this.Percent = GetPercent(config, time, beginTime);
+            int period = GetPeriod(config, time, beginTime);
+            this.Percent = GetPercent(config, period, time, beginTime);
             this.phase = config.Phases.Last(p => this.Percent >= 0 ? (p.Begin <= this.Percent * 100) : p.Begin < 0);
 
             this.Color = this.phase.GetColor();
             this.NotificationIcon = this.phase.GetIcon();
-            this.NotificationText = this.phase.GetMessage();
+
+            string periodTitle = period >= 0 && period < config.Periods.Count 
+                ? config.Periods[period].Title
+                : "All";
+
+            this.NotificationText = String.Format(this.phase.GetMessage(), periodTitle);
+
             this.AppearanceStamp = config.Appearance.GetStamp();
         }
 
-        private static float GetPercent(TimelinerConfig config, float time, float beginTime)
+        private static int GetPeriod(TimelinerConfig config, float time, float beginTime)
+        {
+            return (int)Math.Floor((time - beginTime) / (config.Timeline.Period + config.Timeline.Pause));
+        }
+
+        private static float GetPercent(TimelinerConfig config, int period, float time, float beginTime)
         {
             if (time < beginTime)
             {
                 return -1;
             }
 
-            int period = (int) Math.Floor((time - beginTime) / (config.Timeline.Play + config.Timeline.Pause));
-            if (period >= config.Timeline.Periods)
+            if (period >= config.Periods.Count)
             {
                 return 1;
             }
 
-            float rest = (time - beginTime) % (config.Timeline.Play + config.Timeline.Pause);
-            if (rest > config.Timeline.Play)
+            float rest = (time - beginTime) % (config.Timeline.Period + config.Timeline.Pause);
+            if (rest > config.Timeline.Period)
             {
                 return 1;
             }
 
-            return rest / config.Timeline.Play;
+            return rest / config.Timeline.Period;
         }
 
         public bool Equals(Step step)

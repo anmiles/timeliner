@@ -23,6 +23,10 @@ namespace Timeliner.Configuration
         [XmlElement("Appearance")]
         public AppearanceElement Appearance { get; set; }
 
+        [XmlArray("Periods")]
+        [XmlArrayItem("Period", typeof(PeriodElement))]
+        public List<PeriodElement> Periods { get; set; }
+
         [XmlArray("Phases")]
         [XmlArrayItem("Phase", typeof(PhaseElement))]
         public List<PhaseElement> Phases { get; set; }

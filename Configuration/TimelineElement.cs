@@ -13,14 +13,10 @@ namespace Timeliner.Configuration
         [XmlElement("Start")]
         public StartElement Start { get; set; }
 
-        [XmlElement("Play")]
-        public int Play { get; set; }
+        [XmlElement("Period")]
+        public int Period { get; set; }
 
         [XmlElement("Pause")]
         public int Pause { get; set; }
-
-        [XmlElement("Periods")]
-        public int Periods { get; set; }
-
     }
 }

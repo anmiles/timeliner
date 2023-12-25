@@ -17,9 +17,11 @@ namespace Timeliner
     public partial class ConfigForm : Form
     {
         private TimelinerConfig config;
+        private TextBox listPeriods;
         private ExTableLayoutPanel tablePhases;
         private const int CONST_defaultRowWidth = 30;
         private const int CONST_defaultCellPadding = 3;
+        private const int CONST_periodColumnWidth = 80;
         private Button buttonPhaseAdd;
 
         private Dictionary<ToolTipIcon, Bitmap> phaseIcons = new Dictionary<ToolTipIcon, Bitmap>
@@ -50,9 +52,8 @@ namespace Timeliner
         private void BuildForm()
         {
             this.BuildTimelineStart();
-            this.BuildTimelinePlay();
+            this.BuildTimelinePeriod();
             this.BuildTimelinePause();
-            this.BuildTimelinePeriods();
 
             this.BuildSettingsResetAfterMidnight();
             this.BuildSettingsShowAfterMidnight();
@@ -65,6 +66,8 @@ namespace Timeliner
             this.BuildButtons();
 
             this.BuildPhases();
+
+            this.BuildPeriods();
         }
 
         private void BuildTimelineStart()
@@ -77,11 +80,11 @@ namespace Timeliner
             this.txtTimelineStart.Validated += (s, e) => this.config.Timeline.Start.SetDate(value);
         }
 
-        private void BuildTimelinePlay()
+        private void BuildTimelinePeriod()
         {
-            this.numericTimelinePlay.Width = this.txtTimelineStart.Width;
-            this.numericTimelinePlay.Value = this.config.Timeline.Play;
-            this.numericTimelinePlay.Validated += (s, e) => this.config.Timeline.Play = (int) ((NumericUpDown) s).Value;
+            this.numericTimelinePeriod.Width = this.txtTimelineStart.Width;
+            this.numericTimelinePeriod.Value = this.config.Timeline.Period;
+            this.numericTimelinePeriod.Validated += (s, e) => this.config.Timeline.Period = (int) ((NumericUpDown) s).Value;
         }
 
         private void BuildTimelinePause()
@@ -89,13 +92,6 @@ namespace Timeliner
             this.numericTimelinePause.Width = this.txtTimelineStart.Width;
             this.numericTimelinePause.Value = this.config.Timeline.Pause;
             this.numericTimelinePause.ValueChanged += (s, e) => this.config.Timeline.Pause = (int) ((NumericUpDown) s).Value;
-        }
-
-        private void BuildTimelinePeriods()
-        {
-            this.numericTimelinePeriods.Width = this.txtTimelineStart.Width;
-            this.numericTimelinePeriods.Value = this.config.Timeline.Periods;
-            this.numericTimelinePeriods.ValueChanged += (s, e) => this.config.Timeline.Periods = (int) ((NumericUpDown) s).Value;
         }
 
         private void BuildSettingsResetAfterMidnight()
@@ -108,6 +104,32 @@ namespace Timeliner
         {
             this.checkShowAfterMidnight.Checked = this.config.Settings.ShowAfterMidnight;
             this.checkShowAfterMidnight.CheckedChanged += (s, e) => this.config.Settings.ShowAfterMidnight = ((CheckBox) s).Checked;
+        }
+
+        private void BuildPeriods()
+        {
+            this.groupPeriods.SuspendLayout();
+            this.groupPeriods.Width = this.groupPhases.Width;
+
+            this.listPeriods = new TextBox()
+            {
+                Location = new Point(9, 15),
+                Width = this.groupPeriods.Width - 15,
+                Height = this.groupPeriods.Height - 25,
+                Multiline = true,
+            };
+
+            this.listPeriods.Lines = this.config.Periods.Select(p => p.Title).ToArray();
+
+            this.listPeriods.TextChanged += (s, e) =>
+            {
+                config.Periods = ((TextBox)s).Lines
+                .Select(title => new PeriodElement() { Title = title })
+                .ToList();
+            };
+
+            this.groupPeriods.Controls.Add(this.listPeriods);
+            this.groupPeriods.ResumeLayout();
         }
 
         private void BuildPhases()
@@ -258,14 +280,14 @@ namespace Timeliner
             this.tablePhases.SetColumnSpan(radioPanel, 4);
             radioPanel.SuspendLayout();
 
-            int position = 9;
+            int position = 8;
             foreach (KeyValuePair<ToolTipIcon, Bitmap> kvp in this.phaseIcons)
             {
                 RadioButton radioButton = new RadioButton
                 {
                     Anchor = AnchorStyles.Top,
                     Location = new Point(position, 8),
-                    Size = new Size(12, 14),
+                    Size = new Size(14, 14),
                     Checked = phase1.GetIcon() == kvp.Key,
                     Tag = kvp.Key
                 };
